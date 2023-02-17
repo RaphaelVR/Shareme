@@ -23,7 +23,6 @@ const CreatePin = () => {
 
   const user = fetchUser();
 
-  console.log(user);
 
 
   const uploadImage = (e) => {
@@ -49,7 +48,7 @@ const CreatePin = () => {
   };
 
   const savePin = () => {
-    if(title && about && destination && imageAsset?.sub && category) {
+    if (title && about && destination && imageAsset?._id && category) {
       const doc = {
         _type: 'pin',
         title,
@@ -59,28 +58,32 @@ const CreatePin = () => {
           _type: 'image',
           asset: {
             _type: 'reference',
-            _ref: imageAsset?.sub
-          }
+            _ref: imageAsset?._id,
+          },
         },
         userId: user.sub,
         postedBy: {
           _type: 'postedBy',
-          _ref: user.sub
+          _ref: user.sub,
         },
         category,
-      }
-      client.create(doc)
-      .then(() => {
-        navigate('/')
-      })
+      };
+      client.create(doc).then(() => {
+        navigate('/');
+      });
     } else {
       setFields(true);
 
-      setTimeout(() => setFields(false), 2000)
+      setTimeout(
+        () => {
+          setFields(false);
+        },
+        2000,
+      );
     }
-  }
+  };
 
-console.log(user.sub)
+// console.log(user.sub)
 
 
   return (
