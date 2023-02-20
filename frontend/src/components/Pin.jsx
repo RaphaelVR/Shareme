@@ -49,7 +49,7 @@ const Pin = ({ pin }) => {
       })
   }
 
-  // console.log(postedBy)
+  console.log(alreadySaved.length)
 
 
   return (
@@ -84,9 +84,9 @@ const Pin = ({ pin }) => {
                   {alreadySaved?.length !== 0 ? (
                     <button
                       type="button"
-                      className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-4 py-1 text-base rounded-full hover:shadow-md outline-md'
+                      className='bg-white opacity-70 hover:opacity-100 text-white font-bold px-4 py-1 text-base rounded-full hover:shadow-md outline-md'
                       >
-                      {save?.lenght} Saved
+                      {alreadySaved.length} Saved
                       </button>
                       ) : (
                       <button
@@ -116,7 +116,7 @@ const Pin = ({ pin }) => {
                 {postedBy?._id === user.sub && (
                   <button
                     type="button"
-                    className='bg-white p-2 opacity-70 hover:opacity-100 text-dark font-bold text-base rounded-full hover:shadow-md outline-md'
+                    className='bg-red-500 p-2 opacity-70 hover:opacity-100 text-dark font-bold text-base rounded-full hover:shadow-md outline-md'
                     onClick={(e) => {
                       e.stopPropagation();
                       deletePin(pin._id);
@@ -126,6 +126,7 @@ const Pin = ({ pin }) => {
                   </button>
                 )}
               </div>
+
           </div>
         )}
       </div>
