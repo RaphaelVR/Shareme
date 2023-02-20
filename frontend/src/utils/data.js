@@ -74,7 +74,7 @@ export const feedQuery = `*[_type == "pin"] | order(_createdAt desc) {
     } `;
 
 export const pinDetailQuery = (pinId) => {
-  const query = `*[_type == "pin" && sub == '${pinId}']{
+  const query = `*[_type == "pin" && _id == '${pinId}']{
     image{
       asset->{
         url
