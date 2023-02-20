@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 import { client, urlFor } from "../client";
-import { MasonryLayout } from "./MasonryLayout";
+import  MasonryLayout from "./MasonryLayout";
 import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
 import  Spinner  from "./Spinner";
 import { fetchUser } from '../utils/fetchUser';
@@ -69,6 +69,7 @@ const PinDetail = () => {
 
 
   return (
+    <>
     <div className='flex xl-flex-row flex-col m-auto bg-white ' style={{ maxWidth: '1500px', borderRadius: '32px' }}>
       <div className='flex justify-center items center md:items-start flex-initial'>
         <img
@@ -167,7 +168,17 @@ const PinDetail = () => {
         </div>
       </div>
     </div>
+    {pins ? (
+      <>
+        <h2 className='text-center font-bold text-2xl mt-8 mb-4'>
+          More like this
+        </h2>
+        <MasonryLayout pins={pins}/>
+      </>
+    ) : (
+      <Spinner message="Loading more pins..."/>
+    )}
+    </>
   )
 }
-
 export default PinDetail
